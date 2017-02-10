@@ -92,12 +92,7 @@ class WDSACFJSONJ_Automation {
 			return;
 
 		}
-
-
-		// disable JSON
-		// - this prevents a new JSON file being created and causing a 'change' to theme files - solves git anoyance
-		// acf_update_setting( 'json', false );
-
+		
 		foreach( $sync as $key => $v ) {
 
 			// append fields
