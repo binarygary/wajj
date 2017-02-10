@@ -104,21 +104,48 @@ class WDSACFJSONJ_Automation {
 			return;
 
 		}
-		
-		foreach( $sync as $key => $v ) {
+
+		foreach ( $sync as $key => $v ) {
 
 			// append fields
 			if ( acf_have_local_fields( $key ) ) {
 
 				$sync[ $key ]['fields'] = acf_get_local_fields( $key );
 
+				$this->update_meta_log( $sync[ $key ]['ID'], $key, $sync[ $key ] );
+
 			}
 
 			// import
 			acf_import_field_group( $sync[ $key ] );
 
+
 		}
 
+	}
+
+	public function update_meta_log( $post_id, $acf_group, $data ) {
+
+		if ( $current_meta = get_post_meta( $post_id, 'wajj', 1 ) ) {
+			foreach ( $current_meta['fields'] as $field ) {
+				$data = $this->add_field_to_meta_log( $field, $data );
+			}
+		}
+
+		update_post_meta( $post_id, 'wajj', $data );
+
+	}
+
+	public function add_field_to_meta_log( $field, $data ) {
+		foreach ( $data['fields'] as $data_field ) {
+			if ( $field['key'] == $data_field['key'] ) {
+				return $data;
+			}
+		}
+
+		$data['fields'][] = $field;
+
+		return $data;
 	}
 
 }

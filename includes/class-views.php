@@ -51,8 +51,9 @@ class WDSACFJSONJ_Views {
 	 * @return void
 	 */
 	public function add_revisions_box() {
+		// @TODO Need to check if the meta exists, not if it has revisions.
 		if ( key_exists( 'post', $_GET ) && isset( $_GET['post'] ) && $this->has_revisions( $_GET['post'] ) ) {
-			add_meta_box( 'wajj_revisions', __( 'Deleted Fields', 'wajj' ), array( $this, 'display_revisions' ), array( 'acf-field-group', 'acf-field' ), 'side' );
+			add_meta_box( 'wajj_revisions', __( 'Deleted Fields', 'wajj' ), array( $this, 'display_deleted_fields' ), array( 'acf-field-group', 'acf-field' ), 'side' );
 		}
 	}
 
@@ -76,14 +77,36 @@ class WDSACFJSONJ_Views {
 	 *
 	 * @since 0.1.0
 	 */
-	public function display_revisions() {
-		$id = (int) $_GET['post'];
-		echo "<pre>";
-		$posts = wp_get_post_revisions( $id );
-		foreach( $posts as $post){
-			print_r($post);
-		}
-		echo "</pre>";
+	public function display_deleted_fields() {
+		$id    = (int) $_GET['post'];
 
+		$fieldgroup = get_post_meta($id,'wajj',1);
+
+		$args = array(
+			'post_parent' => $id,
+			'post_type'   => 'any',
+			'numberposts' => -1,
+			'post_status' => 'any'
+		);
+		$children = get_children($args);
+
+		print_r($children);
+
+
+
+		foreach ($fieldgroup['fields'] as $field){
+
+		}
+
+	}
+
+	/**
+	 * Display missing field.
+	 *
+	 * @since 0.1.0
+	 */
+	private function display_field( $field ) {
+		print_r($field);
+		echo "<HR>";
 	}
 }
