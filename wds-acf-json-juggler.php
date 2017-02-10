@@ -125,6 +125,14 @@ final class WDS_ACF_JSON_Juggler {
 	protected $automation;
 
 	/**
+	 * Instance of WDSACFJSONJ_Views
+	 *
+	 * @since0.1.0
+	 * @var WDSACFJSONJ_Views
+	 */
+	protected $views;
+
+	/**
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since  0.1.0
@@ -158,6 +166,7 @@ final class WDS_ACF_JSON_Juggler {
 	public function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
 		$this->automation = new WDSACFJSONJ_Automation( $this );
+		$this->views = new WDSACFJSONJ_Views( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -309,6 +318,7 @@ final class WDS_ACF_JSON_Juggler {
 			case 'url':
 			case 'path':
 			case 'automation':
+			case 'views':
 				return $this->$field;
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
