@@ -112,6 +112,11 @@ class WDSACFJSONJ_Automation {
 
 	}
 
+	/**
+	 * Update the meta history for this thing.
+	 *
+	 * @since 0.1.0
+	 */
 	public function update_meta_log( $post_id, $acf_group, $data ) {
 
 		if ( $current_meta = get_post_meta( $post_id, 'wajj', 1 ) ) {
@@ -124,6 +129,14 @@ class WDSACFJSONJ_Automation {
 
 	}
 
+	/**
+	 * If a field doesn't exist, add it to the meta data.
+	 *
+	 * @param $field
+	 * @param $data
+	 *
+	 * @return mixed
+	 */
 	public function add_field_to_meta_log( $field, $data ) {
 		foreach ( $data['fields'] as $data_field ) {
 			if ( $field['key'] == $data_field['key'] ) {
