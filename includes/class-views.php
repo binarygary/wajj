@@ -51,25 +51,10 @@ class WDSACFJSONJ_Views {
 	 * @return void
 	 */
 	public function add_revisions_box() {
-		// @TODO Need to check if the meta exists, not if it has revisions.
+		// @TODO Need to check if the meta exists.
 		if ( key_exists( 'post', $_GET ) && isset( $_GET['post'] ) ) {
 			add_meta_box( 'wajj_revisions', __( 'Deleted Fields', 'wajj' ), array( $this, 'display_deleted_fields' ), array( 'acf-field-group', 'acf-field' ), 'side' );
 		}
-	}
-
-	/**
-	 * Check if this post has revisions.
-	 *
-	 * @param $id integer
-	 *
-	 * @return bool
-	 */
-	private function has_revisions( $id ) {
-		if ( count( wp_get_post_revisions( $id ) ) > 0 ) {
-			return true;
-		}
-
-		return false;
 	}
 
 	/**
@@ -95,14 +80,9 @@ class WDSACFJSONJ_Views {
 			$post_names[]=$post->post_name;
 		}
 
-		error_log(print_r($post_names,1));
-
-
-
 		foreach ( $fieldgroup['fields'] as $field ) {
 			if (!in_array($field['key'], $post_names)) {
-				print_r($field);
-				echo "<HR>";
+				$this->display_field($field);
 			}
 		}
 
