@@ -1,0 +1,18 @@
+{
+  "generator-plugin-wp": {
+    "name": "WDS ACF JSON Juggler",
+    "homepage": "http://webdevstudios.com",
+    "description": "Handles ACF JSON data to avoid situational overwrites.",
+    "version": "0.1.0",
+    "author": "WebDevStudios",
+    "authoremail": "contact@webdevstudios.com",
+    "authorurl": "http://webdevstudios.com",
+    "license": "GPLv2",
+    "slug": "wds-acf-json-juggler",
+    "classname": "WDS_ACF_JSON_Juggler",
+    "classprefix": "WDSACFJSONJ_",
+    "prefix": "wds_acf_json_juggler",
+    "year": 2017,
+    "currentVersionWP": "4.7.2"
+  }
+}
