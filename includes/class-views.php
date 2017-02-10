@@ -52,7 +52,7 @@ class WDSACFJSONJ_Views {
 	 */
 	public function add_revisions_box() {
 		if ( key_exists( 'post', $_GET ) && isset( $_GET['post'] ) && $this->has_revisions( $_GET['post'] ) ) {
-			add_meta_box( 'wajj_revisions', __( 'Revisions', 'wajj' ), array( $this, 'display_revisions' ), array( 'acf-field-group', 'acf-field' ), 'side' );
+			add_meta_box( 'wajj_revisions', __( 'Deleted Fields', 'wajj' ), array( $this, 'display_revisions' ), array( 'acf-field-group', 'acf-field' ), 'side' );
 		}
 	}
 
@@ -79,7 +79,10 @@ class WDSACFJSONJ_Views {
 	public function display_revisions() {
 		$id = (int) $_GET['post'];
 		echo "<pre>";
-		print_r( wp_get_post_revisions( $id ) );
+		$posts = wp_get_post_revisions( $id );
+		foreach( $posts as $post){
+			print_r($post);
+		}
 		echo "</pre>";
 
 	}
