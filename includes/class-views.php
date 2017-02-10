@@ -71,7 +71,16 @@ class WDSACFJSONJ_Views {
 		return false;
 	}
 
+	/**
+	 * Populate the new metabox.
+	 *
+	 * @since 0.1.0
+	 */
 	public function display_revisions() {
+		$id = (int) $_GET['post'];
+		echo "<pre>";
+		print_r( wp_get_post_revisions( $id ) );
+		echo "</pre>";
 
 	}
 }
