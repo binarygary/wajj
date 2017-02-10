@@ -42,7 +42,7 @@ class WDSACFJSONJ_Automation {
 	 */
 	public function hooks() {
 		add_action( 'init', array( $this, 'load_acf_json' ) );
-		add_action( 'init', array( $this, 'modify_acf_cpts' ) );
+		add_action( 'init', array( $this, 'modify_acf_cpts' ), 1 );
 	}
 
 	/**
