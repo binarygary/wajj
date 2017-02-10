@@ -52,8 +52,6 @@ class WDSACFJSONJ_Automation {
 	 */
 	public function load_acf_json() {
 
-		error_log('in da hook');
-
 		$groups = acf_get_field_groups();
 
 		// bail early if no field groups
